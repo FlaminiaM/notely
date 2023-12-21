@@ -1,0 +1,23 @@
+@import '../../../globalStyles/variables';
+@import '../../../globalStyles/functions';
+
+.tab{
+    color: $gray900-60opacity;
+    font-size: toRem(16);
+    padding: toRem(8);
+    background-color: transparent;
+    cursor: pointer;
+
+    &:hover{
+        color: $gray900-87opacity;
+    }
+
+    &--selected{
+        color: $blue400;
+        border-bottom: 2px solid $blue400;
+
+        &:hover{
+            color: $blue400;
+        }
+    }
+}
