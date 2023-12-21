@@ -2,7 +2,7 @@
 @import '../../../globalStyles/functions';
 
 .button{
-	padding: toRem(12) toRem(16);
+	padding: toRem(12) toRem(19);
 	border-radius: toRem(56);
 	outline: none;
 	border: none;
@@ -24,6 +24,7 @@
 			width: toRem(18);
             height: toRem(18);
             fill: $white;
+			margin-right: toRem(10);
 		}
 	}
 

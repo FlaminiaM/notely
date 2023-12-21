@@ -5,12 +5,13 @@ import InputField from './components/atoms/InputField/InputField';
 import NotesCategory from './components/atoms/NotesCategory/NotesCategory';
 import SelectField from './components/atoms/SelectField/SelectField';
 import Tab from './components/atoms/Tab/Tab';
+import Searchbar from './components/molecules/Searchbar/Searchbar';
 import TabsContainer from './components/molecules/TabsContainer/TabsContainer';
 
 function App() {
   return (
     <div className="App">
-      <Button text='Add to basket' buttonType='primary' />
+      {/* <Button text='Add to basket' buttonType='primary' />
        <Button text='Add to basket' buttonType='primary'  icon={<Icon name="add" /> } /> 
        <Button buttonType='icon'  icon={<Icon name="delete" /> } /> 
        <Button buttonType='icon'  icon={<Icon name="edit" /> } /> 
@@ -20,8 +21,8 @@ function App() {
        <NotesCategory category="personal" />
        <NotesCategory category="home" />
        <NotesCategory category="business" />
-       <TabsContainer tabs={['home', 'business', 'personal']} />
-
+       <TabsContainer tabs={['home', 'business', 'personal']} /> */}
+       <Searchbar />
     </div>
   );
 }
