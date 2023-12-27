@@ -8,6 +8,8 @@ import Tab from './components/atoms/Tab/Tab';
 import Searchbar from './components/molecules/Searchbar/Searchbar';
 import TabsContainer from './components/molecules/TabsContainer/TabsContainer';
 import NewNoteForm from './components/organisms/NewNoteForm/NewNoteForm';
+import NotesList from './components/organisms/NotesList/NotesList';
+
 
 function App() {
   return (
@@ -24,8 +26,12 @@ function App() {
        <NotesCategory category="business" />
        <TabsContainer tabs={['home', 'business', 'personal']} /> */}
        <Searchbar />
-
+       <div className='container'>
+        <NotesList />
+       </div>
        <NewNoteForm open={false} />
+
+       
     </div>
   );
 }
