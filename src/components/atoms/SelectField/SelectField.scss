@@ -4,7 +4,7 @@
 .select{
     display: flex;
     flex-direction: column;
-    width: fit-content;
+    position: relative;
 
     &__button{
         padding: toRem(12);
@@ -27,6 +27,7 @@
         li{
             padding: toRem(16) toRem(12);
             cursor: pointer;
+            list-style-type: none;
         }
     }
 
@@ -40,7 +41,12 @@
         }
         ul{
             display: block;
-            margin-top: toRem(8);
+            position: absolute;
+            width: 100%;
+            z-index: 2;
+            background-color: white;
+            top: toRem(54);
+
             li{
                 &:hover{
                     background-color: $blue400;
