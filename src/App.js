@@ -7,11 +7,13 @@ import SelectField from './components/atoms/SelectField/SelectField';
 import Tab from './components/atoms/Tab/Tab';
 import Searchbar from './components/molecules/Searchbar/Searchbar';
 import TabsContainer from './components/molecules/TabsContainer/TabsContainer';
-import NewNoteForm from './components/organisms/NewNoteForm/NewNoteForm';
+import NoteForm from './components/organisms/NoteForm/NoteForm';
 import NotesList from './components/organisms/NotesList/NotesList';
 
+import { connect } from "react-redux";
 
-function App() {
+function App(props) {
+
   return (
     <div className="App">
       {/* <Button text='Add to basket' buttonType='primary' />
@@ -29,11 +31,18 @@ function App() {
        <div className='container'>
         <NotesList />
        </div>
-       <NewNoteForm open={false} />
-
+       {
+        props.isNotesFormOpen && <NoteForm open={props.isNotesFormOpen} />
+       }
        
     </div>
   );
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    isNotesFormOpen: state.noteForm.isNotesFormOpen,
+  };
+};
+
+export default connect(mapStateToProps, null)(App);

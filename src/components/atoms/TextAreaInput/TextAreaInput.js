@@ -1,8 +1,8 @@
 import './TextAreaInput.scss';
 
-function TextAreaInput({cols, rows, placeholder}) {
+function TextAreaInput({cols, rows, placeholder, name, inputValue, onChangeHandler}) {
   return (
-    <textarea className='textarea' cols={cols} rows={rows} placeholder={placeholder}></textarea>
+    <textarea className='textarea' cols={cols} rows={rows} value={inputValue} placeholder={placeholder} name={name} onChange={onChangeHandler}></textarea>
   )
 }
 

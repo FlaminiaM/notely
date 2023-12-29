@@ -45,7 +45,7 @@
 
     &__input-groups{
         display: flex;
-        flex-direction: column;
+        flex-direction: column-reverse;
 
         &--space-between{
             justify-content: space-between;
