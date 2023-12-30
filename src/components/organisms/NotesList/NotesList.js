@@ -2,9 +2,9 @@ import './NotesList.scss';
 import { connect } from "react-redux";
 
 import Note from '../Note/Note';
-import { setNoteFormState, deleteNote } from '../../../redux/reducers/notesReducers';
+import { setNoteFormState } from '../../../redux/reducers/notesReducers';
 
-function NotesList({notes, setNoteFormState, deleteNote}) {
+function NotesList({notes, setNoteFormState, deleteFormOpenStateHandler}) {
   const notesList = [...notes];
   const sortFunction = (p1, p2) => {
     const p1Date = new Date(p1.date);
@@ -24,14 +24,9 @@ function NotesList({notes, setNoteFormState, deleteNote}) {
     })
   }
 
-  const deleteNoteHandler = (e) => {
-    const noteId = e.target.closest('.note').getAttribute("note-id");
-    deleteNote(noteId);
-  }
-
   return (
     <div className='notes-list'>
-        {notesList.map((note) => <Note key={note.id} {...note} editNoteHandler={editNoteHandler} deleteNoteHandler={deleteNoteHandler} />)}
+        {notesList.map((note) => <Note key={note.id} {...note} editNoteHandler={editNoteHandler} deleteFormOpenStateHandler={deleteFormOpenStateHandler} />)}
     </div>
   )
 }
@@ -45,7 +40,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     setNoteFormState: (obj) => dispatch(setNoteFormState(obj)),
-    deleteNote: (obj) => dispatch(deleteNote(obj))
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(NotesList);
