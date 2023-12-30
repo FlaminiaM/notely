@@ -10,10 +10,15 @@ function NotesList({notes, setNoteFormState, deleteFormOpenStateHandler, complet
     const p1Date = new Date(p1.date);
     const p2Date = new Date(p2.date);
     return (p1Date < p2Date) ? 1 : ((p1Date > p2Date) ? -1 : 0);
-    
   }
+
   notesList.sort(
-    (p1, p2) => sortFunction(p1, p2));
+    (p1, p2) => sortFunction(p1, p2)
+  );
+
+  notesList.sort(
+    (p1, p2) =>  p1.complete ? 1 : -1
+  )
   
   const editNoteHandler = (e) => {
     const noteId = e.target.closest('.note').getAttribute("note-id");
