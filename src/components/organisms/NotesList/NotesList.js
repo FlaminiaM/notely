@@ -2,9 +2,9 @@ import './NotesList.scss';
 import { connect } from "react-redux";
 
 import Note from '../Note/Note';
-import { setNoteFormState } from '../../../redux/reducers/notesReducers';
+import { setNoteFormState, completeNote } from '../../../redux/reducers/notesReducers';
 
-function NotesList({notes, setNoteFormState, deleteFormOpenStateHandler}) {
+function NotesList({notes, setNoteFormState, deleteFormOpenStateHandler, completeNote}) {
   const notesList = [...notes];
   const sortFunction = (p1, p2) => {
     const p1Date = new Date(p1.date);
@@ -24,9 +24,16 @@ function NotesList({notes, setNoteFormState, deleteFormOpenStateHandler}) {
     })
   }
 
+  const completeNoteHandler = (e) => {
+    console.log("in complete note handler")
+    const noteId = e.target.closest('.note').getAttribute("note-id");
+    console.log('note id is', noteId)
+    completeNote(noteId);
+  }
+
   return (
     <div className='notes-list'>
-        {notesList.map((note) => <Note key={note.id} {...note} editNoteHandler={editNoteHandler} deleteFormOpenStateHandler={deleteFormOpenStateHandler} />)}
+        {notesList.map((note) => <Note key={note.id} {...note} editNoteHandler={editNoteHandler} deleteFormOpenStateHandler={deleteFormOpenStateHandler} completeNoteHandler={completeNoteHandler}/>)}
     </div>
   )
 }
@@ -40,6 +47,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     setNoteFormState: (obj) => dispatch(setNoteFormState(obj)),
+    completeNote: (noteId) => dispatch(completeNote(noteId))
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(NotesList);

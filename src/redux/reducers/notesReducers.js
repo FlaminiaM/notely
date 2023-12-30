@@ -51,6 +51,23 @@ const notesReducers = createSlice({
       window.localStorage.setItem("notes", JSON.stringify(newState.notes))
       return newState;
     },
+    completeNote: (state, action) => {
+      console.log("REDUCER: complete note")
+      const newState = {
+        ...state, 
+        notes: state.notes.map((note) => {
+          if(note.id === parseInt(action.payload)){
+            return {
+              ...note,
+              complete: !note.complete,
+            }
+          }
+          return note;
+        })
+      }
+      window.localStorage.setItem("notes", JSON.stringify(newState.notes))
+      return newState;
+    },
     setNoteFormState: (state, action) => {
       return {
         ...state,
@@ -61,5 +78,5 @@ const notesReducers = createSlice({
   
 });
 
-export const { addNotes, editNotes, deleteNote, setNoteFormState } = notesReducers.actions;
+export const { addNotes, editNotes, deleteNote, completeNote, setNoteFormState } = notesReducers.actions;
 export const notesReducer = notesReducers.reducer;
