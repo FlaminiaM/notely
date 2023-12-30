@@ -11,6 +11,27 @@
     width: 30%;
     min-width: toRem(320);
     margin-bottom: toRem(24);
+
+    &--complete{
+        *{
+            color: $gray900-36opacity;
+        }
+        .note__body{
+            *{
+                text-decoration: line-through;        
+            }
+        }
+
+        .category{
+            color: $gray900-36opacity;
+            background-color: $gray900-36opacity;
+        }
+
+        .button:nth-of-type(2){
+            pointer-events: none;
+        }
+    }
+
     &__header{
         display: flex;
         align-items: center;

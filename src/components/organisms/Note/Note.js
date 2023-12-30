@@ -3,7 +3,7 @@ import Button from '../../atoms/Button/Button';
 import Icon from '../../atoms/Icon/Icon';
 import './Note.scss';
 
-function Note({id, title, description, category, date, editNoteHandler, deleteFormOpenStateHandler}) {
+function Note({id, title, description, category, date, complete, editNoteHandler, deleteFormOpenStateHandler, completeNoteHandler}) {
   const createUserFriendlyDate = (date) => {
     let fullDate = new Date(date);
 
@@ -14,11 +14,11 @@ function Note({id, title, description, category, date, editNoteHandler, deleteFo
     return `${day}/${month}/${year}`;
 }
   return (
-    <div className='note' note-id={id}>
+    <div className={complete ? `note note--complete` : `note`} note-id={id}>
         <div className='note__header'>
             <NotesCategory category={category} />
             <div className='note__header-actions'>
-                <Button buttonType='icon'  icon={<Icon name="checkbox" /> } /> 
+                <Button buttonType='icon'  icon={complete ? <Icon name="checkbox-complete" />  : <Icon name="checkbox" /> } clickHandler={completeNoteHandler} /> 
                 <Button buttonType='icon'  icon={<Icon name="edit" /> } clickHandler={editNoteHandler}/> 
                 <Button buttonType='icon'  icon={<Icon name="delete" /> } clickHandler={deleteFormOpenStateHandler} /> 
             </div>

@@ -16,7 +16,7 @@ function NoteForm({noteForm, notes, addNote, editNotes, setNoteFormState, open})
     const categoryOptions = [{value: 'home', displayValue:'Home'}, {value: 'business', displayValue:'Business'}, {value: 'personal', displayValue:'Personal'}];
     const lastUsedID = notes.length > 0 ? notes[notes.length -1].id : 0;
     let today = new Date();
-    const emptyFormState = {id: lastUsedID + 1, title: '', category: '', description: '', date: today.toDateString()};
+    const emptyFormState = {id: lastUsedID + 1, title: '', category: '', description: '', complete: false, date: today.toDateString()};
     const [note, setNote] = useState(noteForm.isEditState ? notes.filter(note => note.id === parseInt(noteForm.editNoteId))[0] : emptyFormState);
 
     const onInputChangeHandler = (e) => {
