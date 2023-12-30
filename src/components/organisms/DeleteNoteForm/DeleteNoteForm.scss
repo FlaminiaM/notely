@@ -2,7 +2,7 @@
 @import '../../../globalStyles/functions';
 @import '../../../globalStyles/mixins';
 
-.new-note{
+.delete-note{
     z-index: 1;
     background-color: $white;
     border-radius: toRem(16);
@@ -26,32 +26,22 @@
         svg{
             cursor: pointer;
         }
+        .button{
+            padding: 0;
+        }
     }
 
-    &__input-groups{
+    &__text{
+        margin-bottom: toRem(24);
+    }
+
+    &__ctas{
         display: flex;
         flex-direction: column-reverse;
-
-        &--space-between{
-            justify-content: space-between;
-        }
-
-        &--flex-end{
-            justify-content: flex-end;
-            margin-top: toRem(24);
-        }
+        justify-content: flex-end;
 
         @include mdMinBreakPoint{
             flex-direction: row;
-            width: toRem(600);
-        }
-
-        .input-group{
-            width: 100%;
-            margin-bottom: toRem(24);
-            @include mdMinBreakPoint{
-                width: 48%;
-            }
         }
     }
 }

@@ -10,9 +10,9 @@ import SelectField from '../../atoms/SelectField/SelectField';
 import InputGroup from '../../molecules/InputGroup/InputGroup';
 import TextAreaInput from '../../atoms/TextAreaInput/TextAreaInput';
 import Button from '../../atoms/Button/Button';
+import PopupContainer from '../../molecules/PopupContainer/PopupContainer';
 
-
-function NoteForm({noteForm, notes, addNote, editNotes, setNoteFormState}) {
+function NoteForm({noteForm, notes, addNote, editNotes, setNoteFormState, open}) {
     const categoryOptions = [{value: 'home', displayValue:'Home'}, {value: 'business', displayValue:'Business'}, {value: 'personal', displayValue:'Personal'}];
     const lastUsedID = notes.length > 0 ? notes[notes.length -1].id : 0;
     let today = new Date();
@@ -45,7 +45,8 @@ function NoteForm({noteForm, notes, addNote, editNotes, setNoteFormState}) {
         setNote(emptyFormState)
     }
     return (
-        <div className={`${noteForm.isNotesFormOpen ? 'new-note-container new-note-container--open' : 'new-note-container'}`}>
+        <PopupContainer open={open}>
+            <div className='new-note-container'>
             <div className='backdrop'></div>
             <div className='new-note'>
                 <div className='new-note__header'>
@@ -67,6 +68,7 @@ function NoteForm({noteForm, notes, addNote, editNotes, setNoteFormState}) {
                </div>
             </div>
         </div>
+        </PopupContainer>
     )   
 }
 
