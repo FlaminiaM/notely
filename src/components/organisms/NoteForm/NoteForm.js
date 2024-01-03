@@ -12,8 +12,7 @@ import TextAreaInput from '../../atoms/TextAreaInput/TextAreaInput';
 import Button from '../../atoms/Button/Button';
 import PopupContainer from '../../molecules/PopupContainer/PopupContainer';
 
-function NoteForm({noteForm, notes, addNote, editNotes, setNoteFormState, open}) {
-    const categoryOptions = [{value: 'home', displayValue:'Home'}, {value: 'business', displayValue:'Business'}, {value: 'personal', displayValue:'Personal'}];
+function NoteForm({noteForm, notes, addNote, editNotes, setNoteFormState, open, categories}) {
     const lastUsedID = notes.length > 0 ? notes[notes.length -1].id : 0;
     let today = new Date();
     const emptyFormState = {id: lastUsedID + 1, title: '', category: '', description: '', complete: false, date: today.toDateString()};
@@ -55,7 +54,7 @@ function NoteForm({noteForm, notes, addNote, editNotes, setNoteFormState, open})
                 </div>
                <div className='new-note__input-groups new-note__input-groups--space-between'>
                     <InputGroup input={<InputField name="title" inputType='text' placeholder='Title' onChangeHandler={onInputChangeHandler} inputValue={note.title}/>} label="Title" />
-                    <InputGroup input={<SelectField name="category" placeholder="Select" options={categoryOptions} onChangeHandler={onInputChangeHandler} inputValue={note.category}/>} label="Category"/>
+                    <InputGroup input={<SelectField name="category" placeholder="Select" options={categories} onChangeHandler={onInputChangeHandler} inputValue={note.category}/>} label="Category"/>
                </div>
                <InputGroup input={<TextAreaInput cols='1' rows='10' placeholder='Add description' name='description' onChangeHandler={onInputChangeHandler} inputValue={note.description} />} label="Description (optional)"/>
                <div className='new-note__input-groups new-note__input-groups--flex-end'>
@@ -82,7 +81,8 @@ const mapDispatchToProps = (dispatch) => {
   const mapStateToProps = (state) => {
     return {
       notes: state.notes,
-      noteForm: state.noteForm
+      noteForm: state.noteForm,
+      categories: state.categories
     };
   };
 export default connect(mapStateToProps,mapDispatchToProps)(NoteForm);

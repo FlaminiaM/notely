@@ -1,3 +1,6 @@
+@import '../../../globalStyles/variables';
+@import '../../../globalStyles/functions';
+
 .tabs-container{
-    margin: 30px;
+    margin: toRem(30) 0;
 }
