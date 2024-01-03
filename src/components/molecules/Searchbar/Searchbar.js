@@ -1,16 +1,26 @@
 import './Searchbar.scss';
-import Icon from '../../atoms/Icon/Icon';
-
+import { useEffect, useState } from 'react';
 import { connect } from "react-redux";
-import { setNoteFormState } from '../../../redux/reducers/notesReducers';
+import { setNoteFormState, searchBy } from '../../../redux/reducers/notesReducers';
 
+import Icon from '../../atoms/Icon/Icon';
 import InputField from '../../atoms/InputField/InputField';
 import Button from '../../atoms/Button/Button';
 
-function Searchbar({setNoteFormState}) {
+function Searchbar({setNoteFormState, searchBy}) {
+    const [searchText, setSearchText] = useState("");
+
+    useEffect(() => {
+        searchBy(searchText);
+    }, [searchText])
+
+    const onChangeHandler = (e) =>  setSearchText(e.target.value);
+
+    const resetSearch = () => setSearchText("")
     return (
-        <div className='searchbar'>
-            <InputField inputType='text' placeholder='Search' icon={<Icon name="close" /> } />
+        <div className={searchText.length === 0 ? 'searchbar searchbar--empty' : 'searchbar'}>
+            <InputField inputType='text' placeholder='Search' icon={<Icon name="search" /> } inputValue={searchText} onChangeHandler={onChangeHandler} />
+            <Button clickHandler={resetSearch} buttonType="icon" icon={<Icon name="close" />}> </Button>
             <Button text='Add' icon={<Icon name='add' />} buttonType='primary'  clickHandler={() => setNoteFormState({isNotesFormOpen: true, isEditState: false ,editNoteId: ""})} />
         </div>
     )
@@ -19,6 +29,7 @@ function Searchbar({setNoteFormState}) {
 const mapDispatchToProps = (dispatch) => {
     return {
         setNoteFormState: (obj) => dispatch(setNoteFormState(obj)),
+        searchBy: (text) => dispatch(searchBy(text))
     };
 };
 
