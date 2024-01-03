@@ -4,18 +4,19 @@ import { connect } from "react-redux";
 import Note from '../Note/Note';
 import { setNoteFormState, completeNote } from '../../../redux/reducers/notesReducers';
 
-function NotesList({notes, setNoteFormState, deleteFormOpenStateHandler, completeNote}) {
-  const notesList = [...notes];
+function NotesList({notes, filterNotesBy, setNoteFormState, deleteFormOpenStateHandler, completeNote}) {
+  let notesList = filterNotesBy.text === "" ? [...notes] : notes.filter((note) => note.title.toLowerCase().indexOf(filterNotesBy.text.toLowerCase()) > -1);
+  notesList = filterNotesBy.category === "" ? [...notesList] : notesList.filter((note) => note.category === filterNotesBy.category);
   const sortFunction = (p1, p2) => {
     const p1Date = new Date(p1.date);
     const p2Date = new Date(p2.date);
     return (p1Date < p2Date) ? 1 : ((p1Date > p2Date) ? -1 : 0);
   }
-
+  //sort by date
   notesList.sort(
     (p1, p2) => sortFunction(p1, p2)
   );
-
+  // sorty by complete at the end
   notesList.sort(
     (p1, p2) =>  p1.complete ? 1 : -1
   )
@@ -46,6 +47,7 @@ function NotesList({notes, setNoteFormState, deleteFormOpenStateHandler, complet
 const mapStateToProps = (state) => {
   return {
     notes: state.notes,
+    filterNotesBy:state.filterNotesBy
   };
 };
 

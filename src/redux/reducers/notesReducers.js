@@ -6,8 +6,11 @@ const initialState = {
     isNotesFormOpen: false,
     isEditState: false,
     editNoteId: ""
+  },
+  filterNotesBy : {
+    text: "",
+    category: ""
   }
-  
 };
 
 const notesReducers = createSlice({
@@ -52,7 +55,6 @@ const notesReducers = createSlice({
       return newState;
     },
     completeNote: (state, action) => {
-      console.log("REDUCER: complete note")
       const newState = {
         ...state, 
         notes: state.notes.map((note) => {
@@ -73,10 +75,19 @@ const notesReducers = createSlice({
         ...state,
         noteForm: {...action.payload}
       }
+    },
+    searchBy: (state, action) => {
+      return {
+        ...state,
+        filterNotesBy:{
+          ...state.filterNotesBy,
+          text: action.payload
+        }
+      }
     }
   },
   
 });
 
-export const { addNotes, editNotes, deleteNote, completeNote, setNoteFormState } = notesReducers.actions;
+export const { addNotes, editNotes, deleteNote, completeNote, setNoteFormState, searchBy } = notesReducers.actions;
 export const notesReducer = notesReducers.reducer;
