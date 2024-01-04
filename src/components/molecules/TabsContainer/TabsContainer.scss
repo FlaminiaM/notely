@@ -1,6 +1,18 @@
 @import '../../../globalStyles/variables';
 @import '../../../globalStyles/functions';
 
+
+.filters{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 .tabs-container{
     margin: toRem(30) 0;
+
+    &__show-completed{
+        .button:hover{
+            background-color: transparent;
+        }
+    }
 }

@@ -7,6 +7,8 @@ import { setNoteFormState, completeNote } from '../../../redux/reducers/notesRed
 function NotesList({notes, filterNotesBy, setNoteFormState, deleteFormOpenStateHandler, completeNote}) {
   let notesList = filterNotesBy.text === "" ? [...notes] : notes.filter((note) => note.title.toLowerCase().indexOf(filterNotesBy.text.toLowerCase()) > -1);
   notesList = filterNotesBy.category === "" ? [...notesList] : notesList.filter((note) => note.category === filterNotesBy.category);
+  notesList = filterNotesBy.showCompletedOnly ? notesList.filter((note) => note.complete === true) : notesList;
+  
   const sortFunction = (p1, p2) => {
     const p1Date = new Date(p1.date);
     const p2Date = new Date(p2.date);
