@@ -9,6 +9,7 @@ import {deleteNote} from './redux/reducers/notesReducers';
 import { connect } from "react-redux";
 import { useState } from 'react';
 import TabsContainer from './components/molecules/TabsContainer/TabsContainer';
+import EmptyState from './components/organisms/EmptyState/EmptyState';
 
 function App(props) {
   //create state for form
@@ -21,11 +22,12 @@ function App(props) {
   return (
     <div className="App">
         <Searchbar />
-       <div className='container'>
-        <h1>Your Notes</h1>
-        <TabsContainer />
-        <NotesList deleteFormOpenStateHandler={deleteFormOpenStateHandler} />
-       </div>
+        
+          <div className='container'>
+            <h1>Your Notes</h1>
+            <TabsContainer />
+            {props.notes.length > 0 ? <NotesList deleteFormOpenStateHandler={deleteFormOpenStateHandler} />  : <EmptyState text="You don't have any notes"/>}
+          </div>
        {
         props.isNotesFormOpen && <NoteForm open={props.isNotesFormOpen} />
        }
@@ -39,6 +41,7 @@ function App(props) {
 const mapStateToProps = (state) => {
   return {
     isNotesFormOpen: state.noteForm.isNotesFormOpen,
+    notes: state.notes
   };
 };
 

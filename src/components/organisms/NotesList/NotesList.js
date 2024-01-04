@@ -2,6 +2,7 @@ import './NotesList.scss';
 import { connect } from "react-redux";
 
 import Note from '../Note/Note';
+import EmptyState from '../EmptyState/EmptyState';
 import { setNoteFormState, completeNote } from '../../../redux/reducers/notesReducers';
 
 function NotesList({notes, filterNotesBy, setNoteFormState, deleteFormOpenStateHandler, completeNote}) {
@@ -41,7 +42,11 @@ function NotesList({notes, filterNotesBy, setNoteFormState, deleteFormOpenStateH
 
   return (
     <div className='notes-list'>
-        {notesList.map((note) => <Note key={note.id} {...note} editNoteHandler={editNoteHandler} deleteFormOpenStateHandler={deleteFormOpenStateHandler} completeNoteHandler={completeNoteHandler}/>)}
+        {
+          notesList.length > 0 
+            ? notesList.map((note) => <Note key={note.id} {...note} editNoteHandler={editNoteHandler} deleteFormOpenStateHandler={deleteFormOpenStateHandler} completeNoteHandler={completeNoteHandler}/>)
+            : <EmptyState text='No notes found' />
+        }
     </div>
   )
 }
