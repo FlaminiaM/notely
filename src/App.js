@@ -8,6 +8,7 @@ import {deleteNote} from './redux/reducers/notesReducers';
 
 import { connect } from "react-redux";
 import { useState } from 'react';
+import TabsContainer from './components/molecules/TabsContainer/TabsContainer';
 
 function App(props) {
   //create state for form
@@ -21,6 +22,8 @@ function App(props) {
     <div className="App">
         <Searchbar />
        <div className='container'>
+        <h1>Your Notes</h1>
+        <TabsContainer />
         <NotesList deleteFormOpenStateHandler={deleteFormOpenStateHandler} />
        </div>
        {

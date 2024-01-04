@@ -1,9 +1,9 @@
 import './Tab.scss';
 
 
-function Tab({text, selected, tabIndex, handleTabClick}) {
+function Tab({displayValue, selected, value, tabIndex, handleTabClick}) {
     return (
-        <span tab-index={tabIndex} className={`tab ${selected ? 'tab--selected' : ''}`} onClick={(e) => handleTabClick(e.target.getAttribute("tab-index"))}>{text.toUpperCase()}</span>
+        <span tab-index={tabIndex} tab-value={value} className={`tab ${selected ? 'tab--selected' : ''}`} onClick={handleTabClick}>{displayValue.toUpperCase()}</span>
     )
 }
 

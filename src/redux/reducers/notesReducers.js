@@ -9,8 +9,10 @@ const initialState = {
   },
   filterNotesBy : {
     text: "",
-    category: ""
-  }
+    category: "",
+    showCompletedOnly: false
+  },
+  categories:[{value: 'home', displayValue:'Home'}, {value: 'business', displayValue:'Business'}, {value: 'personal', displayValue:'Personal'}]
 };
 
 const notesReducers = createSlice({
@@ -84,10 +86,28 @@ const notesReducers = createSlice({
           text: action.payload
         }
       }
+    },
+    filterBy: (state, action) => {
+      return {
+        ...state,
+        filterNotesBy:{
+          ...state.filterNotesBy,
+          category: action.payload
+        }
+      }
+    },
+    toggleShowCompletedNotesOnly: (state, action) => {
+      return {
+        ...state, 
+        filterNotesBy:{
+          ...state.filterNotesBy,
+          showCompletedOnly: action.payload
+        }
+      }
     }
   },
   
 });
 
-export const { addNotes, editNotes, deleteNote, completeNote, setNoteFormState, searchBy } = notesReducers.actions;
+export const { addNotes, editNotes, deleteNote, completeNote, setNoteFormState, searchBy, filterBy, toggleShowCompletedNotesOnly } = notesReducers.actions;
 export const notesReducer = notesReducers.reducer;
