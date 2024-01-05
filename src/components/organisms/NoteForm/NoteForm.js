@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { connect } from "react-redux";
 import { addNotes, setNoteFormState, editNotes } from '../../../redux/reducers/notesReducers';
 

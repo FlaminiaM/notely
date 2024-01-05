@@ -7,21 +7,21 @@ import Icon from '../../atoms/Icon/Icon';
 import InputField from '../../atoms/InputField/InputField';
 import Button from '../../atoms/Button/Button';
 
-function Searchbar({setNoteFormState, searchBy}) {
+function Searchbar({ setNoteFormState, searchBy }) {
     const [searchText, setSearchText] = useState("");
 
     useEffect(() => {
         searchBy(searchText);
-    }, [searchText])
+    }, [searchText, searchBy])
 
-    const onChangeHandler = (e) =>  setSearchText(e.target.value);
+    const onChangeHandler = (e) => setSearchText(e.target.value);
 
     const resetSearch = () => setSearchText("")
     return (
         <div className={searchText.length === 0 ? 'searchbar searchbar--empty' : 'searchbar'}>
-            <InputField inputType='text' placeholder='Search' icon={<Icon name="search" /> } inputValue={searchText} onChangeHandler={onChangeHandler} />
+            <InputField inputType='text' placeholder='Search' icon={<Icon name="search" />} inputValue={searchText} onChangeHandler={onChangeHandler} />
             <Button clickHandler={resetSearch} buttonType="icon" icon={<Icon name="close" />}> </Button>
-            <Button text='Add' icon={<Icon name='add' />} buttonType='primary'  clickHandler={() => setNoteFormState({isNotesFormOpen: true, isEditState: false ,editNoteId: ""})} />
+            <Button text='Add' icon={<Icon name='add' />} buttonType='primary' clickHandler={() => setNoteFormState({ isNotesFormOpen: true, isEditState: false, editNoteId: "" })} />
         </div>
     )
 }
@@ -33,4 +33,4 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
-export default connect(null,mapDispatchToProps)(Searchbar);
+export default connect(null, mapDispatchToProps)(Searchbar);
