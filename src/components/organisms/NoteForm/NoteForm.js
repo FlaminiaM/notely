@@ -86,7 +86,7 @@ function NoteForm({ noteForm, notes, addNote, editNotes, setNoteFormState, open,
                 <div className='new-note'>
                     <div className='new-note__header'>
                         <h1>New note</h1>
-                        <Button icon={<Icon name='close' height='24' width='24' />} clickHandler={() => setNoteFormState({ isNotesFormOpen: false, isEditState: false, editNoteId: "" })} />
+                        <Button buttonType='icon' icon={<Icon name='close' height='24' width='24' />} clickHandler={() => setNoteFormState({ isNotesFormOpen: false, isEditState: false, editNoteId: "" })} />
                     </div>
                     <div className='new-note__input-groups new-note__input-groups--space-between'>
                         <InputGroup errorMessage={formErrors.title} input={<InputField name="title" inputType='text' placeholder='Title' onChangeHandler={onInputChangeHandler} inputValue={note.title} />} label="Title" />

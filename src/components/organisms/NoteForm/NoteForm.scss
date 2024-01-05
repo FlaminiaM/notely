@@ -21,6 +21,7 @@
     &__header{
         display: flex;
         justify-content: space-between;
+        align-items: center;
         margin-bottom: toRem(24);
 
         svg{
@@ -30,7 +31,7 @@
 
     &__input-groups{
         display: flex;
-        flex-direction: column-reverse;
+        flex-direction: column;
 
         &--space-between{
             justify-content: space-between;
@@ -39,6 +40,7 @@
         &--flex-end{
             justify-content: flex-end;
             margin-top: toRem(24);
+            flex-direction: column-reverse;
         }
 
         @include mdMinBreakPoint{
